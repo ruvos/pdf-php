@@ -1,0 +1,36 @@
+{
+  "name": "ruvos/pdf-php",
+  "description": "Package which wraps FPDF",
+  "version": "0.0.1",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ruwen Katschek",
+      "email": "ruk@electronic-minds.de"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "symfony/serializer": "^6.3.*",
+    "symfony/property-access": "^6.3.*",
+    "fpdf/fpdf": "^1.85"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "PdfPhp\\": "src/PhpPdf"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PdfPhp\\Tests\\": "test/PhpPdf/Tests"
+    }
+  },
+  "archive": {
+    "exclude": [
+      "test", "dev-tools"
+    ]
+  }
+}
