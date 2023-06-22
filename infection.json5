@@ -1,0 +1,17 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/0.26.21/resources/schema.json",
+    "source": {
+        "directories": [
+            "src/PhpPdf"
+        ],
+        "excludes": [
+            "src/PhpPdf/Pdf/Element/ValueObject/Exception/IntegerRuleException.php",
+        ]
+    },
+    "phpUnit": {
+        "customPath": "dev-tools/vendor/bin/phpunit"
+    },
+    "mutators": {
+        "@default": true
+    }
+}

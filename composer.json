@@ -11,8 +11,8 @@
   ],
   "require": {
     "php": "^8.1",
-    "symfony/serializer": "^6.3.*",
-    "symfony/property-access": "^6.3.*",
+    "symfony/serializer": "6.3.*",
+    "symfony/property-access": "6.3.*",
     "fpdf/fpdf": "^1.85"
   },
   "require-dev": {
@@ -32,5 +32,9 @@
     "exclude": [
       "test", "dev-tools"
     ]
+  },
+  "scripts": {
+    "infection": "XDEBUG_MODE=coverage dev-tools/vendor/bin/infection --logger-html=infection-report.html",
+    "phpunit": "XDEBUG_MODE=coverage dev-tools/vendor/bin/phpunit --coverage-html ../../public/reports"
   }
 }
