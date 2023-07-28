@@ -11,13 +11,12 @@ use PHPUnit\Framework\TestCase;
 
 class DocumentToPdfConverterTest extends TestCase
 {
-    public function testDocumentToPdfIsSavedLocally()
+    public function testDocumentToPdfIsSavedLocally(): void
     {
-
-        $element1 = new TextElement(12,23,new Text('TextEins'));
-        $element2 = new TextElement(12,23,new Text('TextZwei'));
+        $element1 = new TextElement(0, 0, new Text('TextEins'), 'Erster Text', 20, 40);
+        $element2 = new TextElement(30, 30, new Text('TextZwei'), 'Zweiter Text', 12, 13);
         $page = new Page([$element1, $element2]);
-        $document = new Document('Ruwen Katschek', [$page]);
+        $document = new Document('Ruwen Katschek','test.pdf', [$page]);
         $pdfConverter = new DocumentToPdfConverter($document);
 
 

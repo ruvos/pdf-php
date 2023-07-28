@@ -30,7 +30,7 @@ class GanzZahlTest extends TestCase
         }
     }
 
-    public function invalidGanzzahlen()
+    public static function invalidGanzzahlen()
     {
         return [
             ['a'],

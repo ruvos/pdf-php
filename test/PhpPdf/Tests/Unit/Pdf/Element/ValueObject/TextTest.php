@@ -1,13 +1,14 @@
 <?php declare(strict_types=1);
 
 namespace PdfPhp\Tests\Unit\Pdf\ValueObject;
+
 use PdfPhp\Pdf\Element\ValueObject\Exception\StringRuleException;
 use PdfPhp\Pdf\Element\ValueObject\Text;
 use PHPUnit\Framework\TestCase;
 
 class TextTest extends TestCase
 {
-    public function testTextIsValid()
+    public function testTextIsValid(): void
     {
         $zahl = new Text('a');
 
@@ -17,7 +18,7 @@ class TextTest extends TestCase
     /**
      * @dataProvider invalidText
      */
-    public function testTextThrowsExceptionOnInvalidInput($invalidtext)
+    public function testTextThrowsExceptionOnInvalidInput($invalidtext): void
     {
         try {
             $invalidInput = $invalidtext;
@@ -30,7 +31,7 @@ class TextTest extends TestCase
         }
     }
 
-    public function invalidText()
+    public static function invalidText(): array
     {
         return [
             [1],

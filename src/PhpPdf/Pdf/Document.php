@@ -1,32 +1,22 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace PdfPhp\Pdf;
 
-class Document
+final class Document
 {
     public readonly string $author;
 
+    public readonly string $filename;
+
+    /**
+     * @var array<Page>
+     */
     public array $pages;
 
-    public const FIRST_PAGE = 1;
-    public function __construct($author, $pages = [])
+    public function __construct(string $author, string $filename = 'document.pdf', array $pages = [])
     {
         $this->author = $author;
-        $this->setPages($pages);
-    }
-
-    private function setPages(array $pages): void
-    {
-        $counter = self::FIRST_PAGE;
-        $pageArray = [];
-
-        /** @var Page $page */
-        foreach ($pages as $page) {
-            $page->pageNumber = $counter;
-            $pageArray[] = $page;
-            $counter++;
-        }
-
-        $this->pages = $pageArray;
+        $this->filename = $filename;
+        $this->pages = $pages;
     }
 }

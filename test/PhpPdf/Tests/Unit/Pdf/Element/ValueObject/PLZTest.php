@@ -1,16 +1,15 @@
 <?php
 
 namespace PdfPhp\Tests\Unit\Pdf\ValueObject;
+
 use PdfPhp\Pdf\Element\ValueObject\Exception\IntegerRuleException;
 use PdfPhp\Pdf\Element\ValueObject\Exception\PLZLengthException;
-use PdfPhp\Pdf\Element\ValueObject\GanzZahl;
 use PdfPhp\Pdf\Element\ValueObject\Postleitzahl;
-use PdfPhp\Pdf\Element\ValueObject\Rule\PLZLengthRule;
 use PHPUnit\Framework\TestCase;
 
 class PLZTest extends TestCase
 {
-    public function testPostleitzahlIsValid()
+    public function testPostleitzahlIsValid(): void
     {
         $zahl = new Postleitzahl(42929);
 
@@ -20,7 +19,7 @@ class PLZTest extends TestCase
     /**
      * @dataProvider invalidPostleitzahlenLength
      */
-    public function testPostleitzahlThrowsExceptionOnInvalidInput($invalidGanzZahl)
+    public function testPostleitzahlThrowsExceptionOnInvalidInput($invalidGanzZahl): void
     {
         try {
             $invalidInput = $invalidGanzZahl;
@@ -33,7 +32,7 @@ class PLZTest extends TestCase
         }
     }
 
-    public function invalidPostleitzahlenLength()
+    public static function invalidPostleitzahlenLength(): array
     {
         return [
             [323],
@@ -43,7 +42,7 @@ class PLZTest extends TestCase
         ];
     }
 
-    public function testPostleitzahlThrowsExceptionOnInputWithAlphabeticLetter()
+    public function testPostleitzahlThrowsExceptionOnInputWithAlphabeticLetter(): void
     {
         try {
             $invalidInput = 'ä';

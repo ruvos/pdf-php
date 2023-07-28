@@ -4,7 +4,7 @@ namespace PdfPhp\Pdf\Element\ValueObject;
 
 use PdfPhp\Pdf\Element\ValueObject\Validator\ValidatorInterface;
 
-class AbstractValueObject implements ValueObjectInterface
+abstract class AbstractValueObject implements ValueObjectInterface
 {
     protected $value;
 

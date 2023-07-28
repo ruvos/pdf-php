@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class JsonToDocumentConverterTest extends TestCase
 {
-    public function testJsonToDocumentIsValid()
+    public function testJsonToDocumentIsValid(): void
     {
         $json = '{"author":"TestAuthor","pages":[]}';
 
@@ -19,7 +19,7 @@ class JsonToDocumentConverterTest extends TestCase
         $this->assertEquals('TestAuthor', $document->author);
     }
 
-    public function testDocumentToJsonIsValid()
+    public function testDocumentToJsonIsValid(): void
     {
         $document = new Document('TestAuthor');
 
@@ -27,7 +27,7 @@ class JsonToDocumentConverterTest extends TestCase
 
         $jsonDocument = $converter->documentToJson($document);
 
-        $this->assertEquals('{"author":"TestAuthor","pages":[]}', $jsonDocument);
+        $this->assertEquals('{"author":"TestAuthor","filename":"document.pdf","pages":[]}', $jsonDocument);
 
     }
 }

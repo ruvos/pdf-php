@@ -23,10 +23,8 @@ class DocumentTest extends TestCase
 
         $pages = [new Page(), new Page()];
 
-        $document = new Document($expectedAuthorName, $pages);
+        $document = new Document($expectedAuthorName,'file.pdf', $pages);
 
         $this->assertEquals(2, count($document->pages));
-        $this->assertEquals(1, $document->pages[0]->pageNumber);
-        $this->assertEquals(2, $document->pages[1]->pageNumber);
     }
 }

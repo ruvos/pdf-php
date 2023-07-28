@@ -1,6 +1,6 @@
 <?php
 
-namespace PdfPhp\Pdf\Adapter;
+namespace PdfPhp\Pdf\Adapter\Adapter;
 
 
 use Fpdf\Fpdf;
@@ -14,7 +14,7 @@ class FpdfAdapter implements PdfAdapterInterface
         $this->fpdf = new Fpdf();
     }
 
-    public function getFpdf(): Fpdf
+    public function buildPdf($document): Fpdf
     {
         return $this->fpdf;
     }

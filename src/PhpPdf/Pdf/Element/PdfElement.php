@@ -6,7 +6,10 @@ interface PdfElement
 {
     public function getValue();
 
-    public function getHeight(): int;
+    public function getCellHeight(): int;
 
-    public function getWidth(): int;
+    public function getCellWidth(): int;
+
+    public function getXCellPosition(): int;
+    public function getYCellPosition(): int;
 }
