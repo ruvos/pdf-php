@@ -6,7 +6,7 @@ use PdfPhp\Pdf\Element\ValueObject\Validator\ValidatorInterface;
 
 abstract class AbstractValueObject implements ValueObjectInterface
 {
-    protected $value;
+    public $value;
 
     protected ValidatorInterface $validator;
 

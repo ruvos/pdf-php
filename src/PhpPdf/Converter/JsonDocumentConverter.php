@@ -3,6 +3,8 @@
 namespace PdfPhp\Converter;
 
 use PdfPhp\Pdf\Document;
+use PdfPhp\Pdf\Element\TextElement;
+use PdfPhp\Pdf\Page;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -19,8 +21,8 @@ class JsonDocumentConverter
 
     public function jsonToDocument(string $jsonDocument): Document
     {
-        $document = $this->serializer->deserialize($jsonDocument, Document::class, 'json');
-
+        $pdfArray = json_decode($jsonDocument,true);
+        $document = $this->buildPdf($pdfArray);
         return $document;
     }
 
@@ -29,5 +31,23 @@ class JsonDocumentConverter
         $document = $this->serializer->serialize($document, 'json');
 
         return $document;
+    }
+
+    private function buildPdf(array $pdfArray): Document
+    {
+        $pages = [];
+        foreach ($pdfArray['pages'] as $page) {
+            $elements = [];
+            foreach ($page['elements'] as $element) {
+                $value = null;
+
+                if(isset($element['value'])) {
+                   $value = $element['value'];
+                }
+                $elements[] = new TextElement($element['xCellPosition'],$element['yCellPosition'],$value,$element['elementName'],$element['cellWidth'],$element['cellHeight']);
+            }
+            $pages[] = new Page($elements);
+        }
+        return new Document($pdfArray['author'],$pdfArray['filename'],$pages);
     }
 }

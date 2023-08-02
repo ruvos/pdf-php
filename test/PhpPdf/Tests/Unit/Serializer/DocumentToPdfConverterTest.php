@@ -20,6 +20,6 @@ class DocumentToPdfConverterTest extends TestCase
         $pdfConverter = new DocumentToPdfConverter($document);
 
 
-        $pdfConverter->buildPdf();
+        $pdfConverter->buildPdfTemplate();
     }
 }

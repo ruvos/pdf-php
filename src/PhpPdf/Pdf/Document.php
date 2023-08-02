@@ -8,6 +8,8 @@ final class Document
 
     public readonly string $filename;
 
+    public bool $isEmptyValueDocumentCreated = false;
+
     /**
      * @var array<Page>
      */
@@ -18,5 +20,52 @@ final class Document
         $this->author = $author;
         $this->filename = $filename;
         $this->pages = $pages;
+    }
+
+    public function createEmptyValueDocument()
+    {
+        $pages = [];
+
+        foreach ($this->pages as $page) {
+            $elements = [];
+            foreach ($page->elements as $element) {
+                if($element->value === null) {
+                   $elements[] = $element;
+                }
+            }
+            $pages[] = new Page($elements);
+        }
+
+        $this->isEmptyValueDocumentCreated = true;
+
+        return new Document($this->author, $this->filename,$pages);
+    }
+
+    public function createKeyValueCreationArray(Document $document)
+    {
+        $list = ['name' => $document->filename];
+
+        $pages = $document->pages;
+
+        foreach ($pages as $page) {
+            foreach ($page->elements as $element) {
+                $list[$element->elementName] = '';
+            }
+        }
+
+        return $list;
+    }
+
+    public function fillDocumentWithValues(array $keyValueList)
+    {
+        foreach ($this->pages as $page) {
+            foreach ($page->elements as $element) {
+                foreach ($keyValueList as $key => $value) {
+                    if ($element->elementName === $key) {
+                        $element->value = $value;
+                    }
+                }
+            }
+        }
     }
 }

@@ -6,31 +6,31 @@ use PdfPhp\Pdf\Element\ValueObject\ValueObjectInterface;
 
 class AbstractElement implements PdfElement
 {
-    private int $cellWidth;
+    public int $cellWidth;
 
-    private int $cellHeight;
+    public int $cellHeight;
 
-    private int $xCellPosition;
+    public int $xCellPosition;
 
-    private int $yCellPosition;
+    public int $yCellPosition;
 
-    private string $elementName;
+    public string $elementName;
 
-    private ValueObjectInterface $valueObject;
+    public string|null $value;
 
-    public function __construct(int $xposition, int $yposition, ValueObjectInterface $valueObject,string $elementName = 'element',int $cellWidth = 0, int $cellHeight = 0)
+    public function __construct(int $xposition, int $yposition, string|null $valueObject, string $elementName = 'element', int $cellWidth = 0, int $cellHeight = 0)
     {
         $this->cellWidth = $cellWidth;
         $this->cellHeight = $cellHeight;
-        $this->valueObject = $valueObject;
+        $this->value = $valueObject;
         $this->xCellPosition = $xposition;
         $this->yCellPosition = $yposition;
         $this->elementName = $elementName;
     }
 
-    public function getValue()
+    public function getValue(): string|null
     {
-        return $this->valueObject->getValue();
+        return $this->value;
     }
 
     public function getCellWidth(): int

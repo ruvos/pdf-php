@@ -13,7 +13,8 @@
     "php": "^8.1",
     "symfony/serializer": "6.3.*",
     "symfony/property-access": "6.3.*",
-    "fpdf/fpdf": "^1.85"
+    "fpdf/fpdf": "^1.85",
+    "setasign/fpdi": "^2.4"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
