@@ -2,8 +2,6 @@
 
 namespace PdfPhp\Pdf\Element;
 
-use PdfPhp\Pdf\Element\ValueObject\ValueObjectInterface;
-
 class AbstractElement implements PdfElement
 {
     public int $cellWidth;
@@ -18,11 +16,11 @@ class AbstractElement implements PdfElement
 
     public string|null $value;
 
-    public function __construct(int $xposition, int $yposition, string|null $valueObject, string $elementName = 'element', int $cellWidth = 0, int $cellHeight = 0)
+    public function __construct(int $xposition, int $yposition, string|null $value, string $elementName = 'element', int $cellWidth = 0, int $cellHeight = 0)
     {
         $this->cellWidth = $cellWidth;
         $this->cellHeight = $cellHeight;
-        $this->value = $valueObject;
+        $this->value = $value;
         $this->xCellPosition = $xposition;
         $this->yCellPosition = $yposition;
         $this->elementName = $elementName;

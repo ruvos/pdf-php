@@ -27,7 +27,7 @@ class JsonToDocumentConverterTest extends TestCase
 
         $jsonDocument = $converter->documentToJson($document);
 
-        $this->assertEquals('{"author":"TestAuthor","filename":"document.pdf","pages":[]}', $jsonDocument);
+        $this->assertEquals('{"author":"TestAuthor","filename":"document.pdf","isEmptyValueDocumentCreated":false,"pages":[]}', $jsonDocument);
 
     }
 }
