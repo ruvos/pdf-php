@@ -2,7 +2,6 @@
 
 namespace PdfPhp\Converter;
 
-use Fpdf\Fpdf;
 use PdfPhp\Pdf\Document;
 use PdfPhp\Pdf\Element\PdfElement;
 use PdfPhp\Pdf\Page;
@@ -38,14 +37,13 @@ class DocumentToPdfConverter
                 $this->fpdf->Cell($element->getCellWidth(), $element->getCellHeight(), $element->getValue(), 0, 0, '');
             }
         }
-        if (file_exists(sprintf('templates/%s',$document->filename))) {
+        if (file_exists(sprintf('templates/%s',$document->filename)) && $output === 'D') {
             $this->fpdf->setSourceFile(sprintf('templates/%s',$document->filename));
             $asd = $this->fpdf->importPage(1);
             $this->fpdf->useTemplate($asd);
-            $this->fpdf->Output();
+            $this->fpdf->Output($output, 'finish_'.$document->filename);
             die();
         }
-
         //TODO:: templates pfad über env definieren. Loader klasse dafür bauen
         $this->fpdf->Output($output, sprintf('templates/%s',$document->filename));
     }
