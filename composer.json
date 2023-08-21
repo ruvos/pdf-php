@@ -35,7 +35,7 @@
     ]
   },
   "scripts": {
-    "infection": "XDEBUG_MODE=coverage dev-tools/vendor/bin/infection --logger-html=infection-report.html",
-    "phpunit": "XDEBUG_MODE=coverage dev-tools/vendor/bin/phpunit --coverage-html ../../public/reports"
+    "infection": "XDEBUG_MODE=coverage dev-tools/vendor/bin/infection -jmax",
+    "phpunit": "XDEBUG_MODE=coverage dev-tools/vendor/bin/phpunit --coverage-html reports"
   }
 }

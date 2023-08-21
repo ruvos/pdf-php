@@ -1,6 +1,6 @@
 <?php
 
-namespace PdfPhp\Pdf\PathLoader;
+namespace PdfPhp\PathLoader;
 
 interface PathLoaderInterface
 {

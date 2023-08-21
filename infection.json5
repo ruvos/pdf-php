@@ -9,9 +9,14 @@
         ]
     },
     "phpUnit": {
-        "customPath": "dev-tools/vendor/bin/phpunit"
+        "customPath": "dev-tools/vendor/bin/phpunit",
+        "configDir": "./"
     },
     "mutators": {
         "@default": true
+    },
+    "logs": {
+        "html": "infection/infection.html",
+        "summary": "infection/summary.log",
     }
 }

@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace PdfPhp\PathLoader;
 
 
-
-use PdfPhp\Pdf\PathLoader\PathLoaderInterface;
-
 final class TemplatePathLoader implements PathLoaderInterface
 {
 

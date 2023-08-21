@@ -2,28 +2,26 @@
 
 namespace PdfPhp\Converter;
 
+use PdfPhp\PathLoader\PathLoaderInterface;
 use PdfPhp\Pdf\Document;
 use PdfPhp\Pdf\Element\PdfElement;
 use PdfPhp\Pdf\Page;
 use setasign\Fpdi\Fpdi;
 
-class DocumentToPdfConverter
+class DocumentToPdfConverter implements DocumentToPdfConverterInterface
 {
-    private Document $document;
-
     private Fpdi $fpdf;
+    private PathLoaderInterface $pathLoader;
 
 
-    public function __construct(Document $document)
+    public function __construct(PathLoaderInterface $pathLoader)
     {
-        $this->document = $document;
         $this->fpdf = new Fpdi();
+        $this->pathLoader = $pathLoader;
     }
 
-    public function buildPdfTemplate(string $output = 'F')
+    public function buildPdfTemplate(Document $document, string $output = 'F')
     {
-        $document = $this->document;
-
         $this->fpdf->SetAuthor($document->author);
         //TODO: font dem document hinzufügen und dynamisch machen
         $this->fpdf->SetFont('Times');
@@ -37,14 +35,15 @@ class DocumentToPdfConverter
                 $this->fpdf->Cell($element->getCellWidth(), $element->getCellHeight(), $element->getValue(), 0, 0, '');
             }
         }
-        if (file_exists(sprintf('templates/%s',$document->filename)) && $output === 'D') {
-            $this->fpdf->setSourceFile(sprintf('templates/%s',$document->filename));
+
+        if (file_exists($this->pathLoader->getPath().$document->filename) && $output === 'D') {
+            $this->fpdf->setSourceFile($this->pathLoader->getPath().$document->filename);
             $asd = $this->fpdf->importPage(1);
             $this->fpdf->useTemplate($asd);
             $this->fpdf->Output($output, 'finish_'.$document->filename);
             die();
         }
         //TODO:: templates pfad über env definieren. Loader klasse dafür bauen
-        $this->fpdf->Output($output, sprintf('templates/%s',$document->filename));
+        $this->fpdf->Output($output, $this->pathLoader->getPath().$document->filename);
     }
 }
