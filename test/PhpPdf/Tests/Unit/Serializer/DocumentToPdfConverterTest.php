@@ -13,12 +13,11 @@ class DocumentToPdfConverterTest extends TestCase
 {
     public function testDocumentToPdfIsSavedLocally(): void
     {
-        $element1 = new TextElement(0, 0, new Text('TextEins'), 'Erster Text', 20, 40);
-        $element2 = new TextElement(30, 30, new Text('TextZwei'), 'Zweiter Text', 12, 13);
+        $element1 = new TextElement(0, 0,'TextEins', 'Erster Text', 20, 40);
+        $element2 = new TextElement(30, 30, 'TextZwei', 'Zweiter Text', 12, 13);
         $page = new Page([$element1, $element2]);
         $document = new Document('Ruwen Katschek','test.pdf', [$page]);
         $pdfConverter = new DocumentToPdfConverter($document);
-
 
         $pdfConverter->buildPdfTemplate();
     }

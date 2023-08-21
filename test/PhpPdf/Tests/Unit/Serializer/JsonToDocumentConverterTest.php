@@ -10,7 +10,7 @@ class JsonToDocumentConverterTest extends TestCase
 {
     public function testJsonToDocumentIsValid(): void
     {
-        $json = '{"author":"TestAuthor","pages":[]}';
+        $json = '{"author":"TestAuthor","filename":"document.pdf","isEmptyValueDocumentCreated":false,"pages":[]}';
 
         $converter = new JsonDocumentConverter();
 
